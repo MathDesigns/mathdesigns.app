@@ -1,38 +1,22 @@
-# sv
+# mathdesigns.app 🚀
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+The source code of my personal wesbite, made using SvelteKit and TailwindCSS
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Authors
 
-```bash
-# create a new project in the current directory
-npx sv create
+- [@MathDesigns](https://github.com/MathDesigns)
 
-# create a new project in my-app
-npx sv create my-app
-```
 
-## Developing
+## Contributing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Contributions are always welcome !
 
-```bash
-npm run dev
+Fork the repo, do your thing, then feel free to open a pull request.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
+## License
 
-To create a production version of your app:
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/license/gpl-3-0)
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+To use my project, which is licensed under the GPL v3, simply download the code from the repository. You are free to modify, distribute, and use it for personal or commercial purposes, as long as you adhere to the terms of the GPL v3 license. This means that if you make any modifications or distribute the project (either as-is or with changes), you must also release the source code and include the same license. Additionally, you must include a copy of the license when redistributing the project.
