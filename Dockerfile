@@ -5,10 +5,8 @@ RUN npm install -g pnpm
 WORKDIR /app
 COPY . .
 RUN npm ci
-RUN npm audit fix
-RUN npm run build
 
-RUN rm -rf src/ static/ emailTemplates/ docker-compose.yml
+RUN npm run build
 
 EXPOSE 6969
 CMD ["node", "build/index.js"]
