@@ -8,5 +8,7 @@ RUN npm ci
 
 RUN npm run build
 
+USER node:node
+
 EXPOSE 6969
 CMD ["node", "build/index.js"]
