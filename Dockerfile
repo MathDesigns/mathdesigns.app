@@ -1,11 +1,9 @@
-# Dockerfile
-
 FROM node:16-alpine
 
 RUN npm install -g pnpm
 
 WORKDIR /app
-COPY ..
+COPY . .
 RUN npm ci
 RUN npm audit fix
 RUN npm run build
