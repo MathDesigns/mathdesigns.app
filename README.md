@@ -1,7 +1,12 @@
 # mathdesigns.app 🚀
 
-The source code of my personal wesbite, made using SvelteKit and TailwindCSS
+The source code of my personal wesbite
 
+## Tech Stack
+- SvelteKit
+- TailwindCSS
+- Shadcn-svelte
+- Lucide-svelte
 
 ## Authors
 
