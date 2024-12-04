@@ -1,2 +1,2 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="flex items-center justify-center min-h-screen bg-catpuccin_base">
+    <iframe src="https://embed.tidal.com/playlists/2082acb0-2c7e-4d88-ba1d-48a24e70ef66" width="700" height="600" allow="encrypted-media" sandbox="allow-same-origin allow-scripts allow-forms allow-popups" title="TIDAL Embed Player" /></div>
