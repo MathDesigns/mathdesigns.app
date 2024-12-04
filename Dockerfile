@@ -1,14 +1,14 @@
-FROM node:16-alpine
-
-RUN npm install -g pnpm
-
+FROM node:16-alpine AS external-website
+LABEL Developers="MathDesigns"
 WORKDIR /app
 COPY . .
+
 RUN npm ci
 
 RUN npm run build
 
+RUN rm -rf src/ static/ emailTemplates/ docker-compose.yml
+
 USER node:node
 
-EXPOSE 6969
-CMD ["node", "build/index.js"]
+CMD ["node","build/index.js"]
