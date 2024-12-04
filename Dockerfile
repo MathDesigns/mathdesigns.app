@@ -1,9 +1,9 @@
-FROM node:16-alpine AS external-website
+FROM node:21 AS external-website
 LABEL Developers="MathDesigns"
 WORKDIR /app
 COPY . .
 
-RUN npm ci
+RUN npm ci 
 
 RUN npm run build
 
