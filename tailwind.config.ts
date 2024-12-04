@@ -1,30 +1,65 @@
-import aspectRatio from '@tailwindcss/aspect-ratio';
-import containerQueries from '@tailwindcss/container-queries';
-import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
+import { fontFamily } from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
 
-export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-
+const config: Config = {
+	darkMode: ["selector"],
+	content: ["./src/**/*.{html,js,svelte,ts}"],
+	safelist: ["dark"],
 	theme: {
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px"
+			}
+		},
 		extend: {
 			colors: {
-				nav:'#001824',
-				background: '#10002B',
-				background_accent_blue: '#240046',
-				background_accent_purple: '#3C096C',
-				accent: '#7B2CBF',
-				accent_blueish: '#C77DFF',
-				catpuccin_base: '#1e1e2e',
-				catpuccin_mauve: '#cba6f7',
-				catpuccin_text: '#cdd6f4',
-				catpuccin_subtext: '#bac2de',
-				catpuccin_surface: '#313244'
-
+				border: "hsl(var(--border) / <alpha-value>)",
+				input: "hsl(var(--input) / <alpha-value>)",
+				ring: "hsl(var(--ring) / <alpha-value>)",
+				background: "hsl(var(--background) / <alpha-value>)",
+				foreground: "hsl(var(--foreground) / <alpha-value>)",
+				primary: {
+					DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+					foreground: "hsl(var(--primary-foreground) / <alpha-value>)"
+				},
+				secondary: {
+					DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+					foreground: "hsl(var(--secondary-foreground) / <alpha-value>)"
+				},
+				destructive: {
+					DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+					foreground: "hsl(var(--destructive-foreground) / <alpha-value>)"
+				},
+				muted: {
+					DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+					foreground: "hsl(var(--muted-foreground) / <alpha-value>)"
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+					foreground: "hsl(var(--accent-foreground) / <alpha-value>)"
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+					foreground: "hsl(var(--popover-foreground) / <alpha-value>)"
+				},
+				card: {
+					DEFAULT: "hsl(var(--card) / <alpha-value>)",
+					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
+				}
+			},
+			borderRadius: {
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)"
+			},
+			fontFamily: {
+				tech: ['"Share Tech Mono"', "mono"],
+				sans: [...fontFamily.sans]
 			}
 		}
 	},
+};
 
-	plugins: [typography, forms, containerQueries, aspectRatio]
-} satisfies Config;
+export default config;
