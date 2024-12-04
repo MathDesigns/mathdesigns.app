@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Brussels
     restart: unless-stopped
     ports:
-      - '6969:6969'
+      - '3000:3000'
     networks:
       - caddy
 networks:

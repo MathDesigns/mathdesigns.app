@@ -1,4 +1,4 @@
-FROM node:21 AS external-website
+FROM node:23-alpine AS external-website
 LABEL Developers="MathDesigns"
 WORKDIR /app
 COPY . .
