@@ -1,0 +1,23 @@
+# docker-compose.yml
+
+version: "3"
+
+services:
+  external:
+    container_name: svelte-deploy
+    image: node-svelte-deploy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "node"
+    environment:
+      - NODE_ENV=production
+      - TZ=Europe/Brussels
+    restart: unless-stopped
+    ports:
+      - '6969:6969'
+    networks:
+      - caddy
+networks:
+  caddy:
+    external: true
