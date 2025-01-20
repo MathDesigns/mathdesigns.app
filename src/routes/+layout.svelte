@@ -4,123 +4,116 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import Sun from 'lucide-svelte/icons/sun';
 	import Moon from 'lucide-svelte/icons/moon';
-
+	import Menu from 'lucide-svelte/icons/menu';
+	import X from 'lucide-svelte/icons/x';
+	
 	import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import TerminalAnimation from '$lib/components/TerminalAnimation.svelte';
+	import { onMount } from 'svelte';
+	
 	let { children } = $props();
-
+	
 	const isMobileMenuOpen = writable(false);
-
+	
 	const toggleMobileMenu = () => {
 		isMobileMenuOpen.update((value) => !value);
 	};
-</script>
-
-<ModeWatcher />
-<nav class="bg-catpuccin_base font-tech">
-	<div class="mx-auto px-2 sm:px-6 lg:px-8">
-		<div class="relative flex h-16 items-center justify-between">
-			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-				<!-- Mobile menu button -->
-				<button
-					type="button"
-					class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-					aria-controls="mobile-menu"
-					aria-expanded={$isMobileMenuOpen ? 'true' : 'false'}
-					onclick={toggleMobileMenu}
-				>
-					<span class="absolute -inset-0.5"></span>
-					<span class="sr-only">Open main menu</span>
-
-					<!-- Icon when menu is closed -->
-					<svg
-						class="{$isMobileMenuOpen ? 'hidden' : 'block'} block size-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						aria-hidden="true"
-						data-slot="icon"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-						/>
-					</svg>
-
-					<!-- Icon when menu is open -->
-					<svg
-						class="{$isMobileMenuOpen ? 'block' : 'hidden'} size-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						aria-hidden="true"
-					>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-					</svg>
-				</button>
-				<Button on:click={toggleMode} variant="outline" size="icon">
-					<Sun
-					  class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-					/>
-					<Moon
-					  class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-					/>
-					<span class="sr-only">Toggle theme</span>
-				  </Button>
+	
+	function smoothScroll(e: Event) {
+	  e.preventDefault();
+	  const target = e.target as HTMLAnchorElement;
+	  const id = target.getAttribute('href')?.slice(1);
+	  if (id) {
+		const element = document.getElementById(id);
+		if (element) {
+		  element.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		  });
+		}
+	  }
+	  if ($isMobileMenuOpen) {
+		toggleMobileMenu();
+	  }
+	}
+	
+	onMount(() => {
+	  const links = document.querySelectorAll('a[href^="#"]');
+	  links.forEach(link => {
+		link.addEventListener('click', smoothScroll);
+	  });
+	
+	  return () => {
+		links.forEach(link => {
+		  link.removeEventListener('click', smoothScroll);
+		});
+	  };
+	});
+	</script>
+	
+	<svelte:head>
+	  <link rel="preconnect" href="https://rsms.me/">
+	  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+	</svelte:head>
+	
+	<ModeWatcher />
+	<TerminalAnimation />
+	
+	<div class="bg-background text-foreground font-sans">
+	  <nav>
+		<div class="mx-auto px-4 sm:px-6 lg:px-8">
+		  <div class="relative flex h-16 items-center justify-between">
+			<div class="flex items-center">
+			  <a href="/" class="flex-shrink-0">
+				<img class="h-8 w-auto" src="/favicon.png" alt="MathDesigns" />
+			  </a>
 			</div>
-
-			<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-				<div class="flex shrink-0 items-center">
-					<a href="/">
-					<img class="h-8 w-auto" src="logo.png" alt="MathDesigns" />
-				</a>
-				</div>
-
-				<div class="hidden sm:ml-6 sm:block">
-					<div class="flex space-x-4">
-						<a
-							href="projects"
-							class="text-catpuccin_text hover:bg-catpuccin_mauve hover:text-catpuccin_base rounded-md px-3 py-2 text-sm font-medium"
-							>Projects</a
-						>
-						<a
-							href="music"
-							class="text-catpuccin_text hover:bg-catpuccin_mauve hover:text-catpuccin_base rounded-md px-3 py-2 text-sm font-medium"
-							>Music</a
-						>
-						<Button on:click={toggleMode} variant="outline" size="icon">
-							<Sun
-							  class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-							/>
-							<Moon
-							  class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-							/>
-							<span class="sr-only">Toggle theme</span>
-						  </Button>
-					</div>
-				</div>
+			<div class="hidden sm:ml-6 sm:block">
+			  <div class="flex space-x-4">
+				<a href="#hero" class="text-foreground hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+				<a href="#projects" class="text-foreground hover:text-primary px-3 py-2 text-sm font-medium">Projects</a>
+				<a href="#skills" class="text-foreground hover:text-primary px-3 py-2 text-sm font-medium">Skills</a>
+				<a href="#contact" class="text-foreground hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+			  </div>
 			</div>
+			<div class="flex items-center">
+			  <Button on:click={toggleMode} variant="ghost" size="icon" class="mr-2">
+				<Sun class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+				<Moon class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+				<span class="sr-only">Toggle theme</span>
+			  </Button>
+			  <div class="sm:hidden">
+				<Button on:click={toggleMobileMenu} variant="ghost" size="icon">
+				  <Menu class="h-6 w-6" />
+				  <span class="sr-only">Open main menu</span>
+				</Button>
+			  </div>
+			</div>
+		  </div>
 		</div>
-	</div>
-
-	<!-- Mobile menu -->
-	<div class={$isMobileMenuOpen ? 'block sm:hidden' : 'hidden sm:hidden'} id="mobile-menu">
-		<div class="space-y-1 px-2 pb-3 pt-2">
-			<a
-				href="projects"
-				class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-				>Projects</a
-			>
-			<a
-				href="music"
-				class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-				>Music</a
-			>
+	
+		<div class={$isMobileMenuOpen ? 'sm:hidden' : 'hidden sm:hidden'} id="mobile-menu">
+		  <div class="space-y-1 px-2 pb-3 pt-2">
+			<a href="#hero" class="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-primary/10">Home</a>
+			<a href="#projects" class="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-primary/10">Projects</a>
+			<a href="#skills" class="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-primary/10">Skills</a>
+			<a href="#contact" class="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-primary/10">Contact</a>
+		  </div>
 		</div>
+	  </nav>
+	
+	  <main class="min-h-screen">
+		{@render children()}
+	  </main>
+	
+	  <footer class="py-8">
+		<div class="container mx-auto px-4">
+		  <div class="flex flex-col items-center justify-center">
+			<p class="text-sm">&copy; {new Date().getFullYear()} MathDesigns. All rights reserved.</p>
+		  </div>
+		</div>
+	  </footer>
 	</div>
-</nav>
-
-{@render children()}
+	
+	
