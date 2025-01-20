@@ -66,7 +66,7 @@
 		  <div class="relative flex h-16 items-center justify-between">
 			<div class="flex items-center">
 			  <a href="/" class="flex-shrink-0">
-				<img class="h-8 w-auto" src="/favicon.png" alt="MathDesigns" />
+				<img class="h-8 w-auto" src="/logo.png" alt="MathDesigns" />
 			  </a>
 			</div>
 			<div class="hidden sm:ml-6 sm:block">

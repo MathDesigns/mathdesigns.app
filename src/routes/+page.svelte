@@ -58,7 +58,7 @@ const skills = [
     <section id="hero" class="mb-16">
       <div class="flex flex-col items-center text-center">
         <Avatar.Root class="w-32 h-32 mb-4 animate-floating">
-          <Avatar.Image src="/favicon.png" alt="Mathéo" />
+          <Avatar.Image src="/logo.png" alt="Mathéo" />
           <Avatar.Fallback>M</Avatar.Fallback>
         </Avatar.Root>
         <h1 class="text-4xl font-bold mb-2">Mathéo S.</h1>
