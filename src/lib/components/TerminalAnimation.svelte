@@ -36,9 +36,9 @@
           clearInterval(interval);
           setTimeout(() => {
             visible = false;
-          }, 1000);
+          }, 1600);
         }
-      }, 200);
+      }, 5);
     
       return () => clearInterval(interval);
     });
